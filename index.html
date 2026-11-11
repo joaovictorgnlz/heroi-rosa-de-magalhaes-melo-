@@ -1,0 +1,1850 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><style data-rogue-action-style="1">[hidden]:not([hidden="until-found" i]){display:none!important}[data-rogue-action-blocked]{cursor:not-allowed!important;white-space:normal!important;flex-wrap:wrap!important;height:auto!important;opacity:1!important}[data-rogue-action-note]{display:block!important;flex-basis:100%;font-family:inherit;font-size:max(12px,.75em);font-weight:400;line-height:1.4;white-space:normal;pointer-events:none;margin-top:.25em}[data-rogue-provider-notice]{display:block!important;box-sizing:border-box!important;width:calc(100% - 2rem)!important;max-width:72rem!important;margin:1rem auto!important;padding:.75rem 1rem!important;border:1px solid #c9ced8!important;border-radius:.5rem!important;background:#f6f7f9!important;color:#1d2330!important;font:400 14px/1.5 system-ui,sans-serif!important;overflow-wrap:anywhere!important}</style><script data-rogue-action-runtime="1">(function E(e,t,a,r,s){let n="data-rogue-action-blocked",i="data-rogue-action-destination",o="data-rogue-action-destination-attribute",l="data-rogue-action-note",c=`a[href],form,[formaction],[data-rogue-action-requires],[data-rogue-action-state="setup_required"],[${n}]`,f={...e.dependencies};for(let t of(e={...e,dependencies:f},Object.keys(f)))t.startsWith("provider:")&&(f[t]=!1);let d=null,u=0,p=new Set,m=new Map,h=()=>[...new Set([...(e.providerDependencies??[]).map(e=>`provider:${e}`),...Array.from(document.querySelectorAll("[data-rogue-action-requires]")).flatMap(e=>(e.getAttribute("data-rogue-action-requires")??"").split(/\s+/).filter(e=>/^provider:[a-z0-9][a-z0-9-]{0,63}$/.test(e)))])],g=()=>{if(!document.body)return;let e=h(),t=document.documentElement.querySelector(":scope > [data-rogue-provider-notice]");if(!e.length&&!t)return;if(!t){let e=document.querySelector("template[data-rogue-provider-template]");(t=e?.content.querySelector("[data-rogue-provider-notice]")??document.createElement("aside")).setAttribute("data-rogue-provider-notice","1"),t.setAttribute("role","status"),t.setAttribute("aria-live","polite"),document.documentElement.insertBefore(t,document.body),e?.remove()}let r=e.some(e=>"unavailable"===m.get(e))?"unavailable":e.some(e=>!m.has(e))?"checking":e.some(e=>"setup"===m.get(e))?"setup":"ready",s="ready"===r?"":a[y()][r];t.textContent!==s&&(t.textContent=s),t.dataset.rogueProviderState!==r&&(t.dataset.rogueProviderState=r),t.hidden!==("ready"===r)&&(t.hidden="ready"===r)},v=(e=!1)=>{let t=h(),a=t.some(e=>!p.has(e));if(!t.length||d||!e&&!a&&Date.now()-u<1e4)return;t.forEach(e=>p.add(e)),u=Date.now();let r=new AbortController,s=setTimeout(()=>r.abort(),5e3);d=(async()=>{try{let e=await fetch("/__api/_capabilities",{cache:"no-store",credentials:"omit",signal:r.signal});if(!e.ok)throw Error("capabilities_unavailable");let a=await e.json(),s=a&&"object"==typeof a?a.dependencies:null;if(!s||"object"!=typeof s||Array.isArray(s))throw Error("invalid_capabilities");for(let e of t){let t=s[e];f[e]=!0===t,m.set(e,"boolean"!=typeof t?"unavailable":t?"connected":"setup")}}catch{for(let e of t)f[e]=!1,m.set(e,"unavailable")}finally{clearTimeout(s),document.querySelectorAll(c).forEach(e=>S(e,b(e))),d=null,g(),h().some(e=>!p.has(e))&&v()}})()},y=()=>document.documentElement.lang?/^pt(?:-|$)/i.test(document.documentElement.lang)?"pt":"en":e.language??"pt",b=t=>{let a=t.hasAttribute("formaction")?"formaction":"FORM"===t.tagName?"action":"href";return s(t.getAttribute(a)??t.getAttribute(i),t.getAttribute("data-rogue-action-requires"),t.getAttribute("data-rogue-action-state"),t.getAttribute("data-rogue-action-kind"),e,r)},S=(e,a)=>{let r="INPUT"===e.tagName,s=r?e.nextElementSibling?.matches(`[${l}]`)?e.nextElementSibling:null:e.querySelector(`:scope > [${l}]`);if(!a){if(!e.hasAttribute(n))return;let t=e.getAttribute(i),a=e.getAttribute(o);t&&a&&!e.hasAttribute(a)&&e.setAttribute(a,t);let r=e.getAttribute("data-rogue-action-original-aria-disabled"),l=e.getAttribute("data-rogue-action-original-tabindex");for(let t of(r?e.setAttribute("aria-disabled",r):e.removeAttribute("aria-disabled"),l?e.setAttribute("tabindex",l):e.removeAttribute("tabindex"),e.hasAttribute("data-rogue-action-added-role")&&e.removeAttribute("role"),[n,i,o,"data-rogue-action-original-aria-disabled","data-rogue-action-original-tabindex","data-rogue-action-added-role"]))e.removeAttribute(t);s?.remove();return}for(let t of(e.hasAttribute(n)||(e.setAttribute("data-rogue-action-original-aria-disabled",e.getAttribute("aria-disabled")??""),e.setAttribute("data-rogue-action-original-tabindex",e.getAttribute("tabindex")??""),e.setAttribute(n,a.kind)),e.getAttribute(n)!==a.kind&&e.setAttribute(n,a.kind),["href","formaction",..."FORM"===e.tagName?["action"]:[]])){let a=e.getAttribute(t);a&&(e.setAttribute(i,a),e.setAttribute(o,t),e.removeAttribute(t))}"FORM"!==e.tagName&&e.setAttribute("aria-disabled","true"),"A"===e.tagName&&(e.hasAttribute("role")||(e.setAttribute("role","link"),e.setAttribute("data-rogue-action-added-role","1")),e.setAttribute("tabindex","0")),s||((s=document.createElement("small")).setAttribute(l,"1"),r?e.insertAdjacentElement("afterend",s):e.appendChild(s));let c=t[y()];s.textContent!==c&&(s.textContent=c)},E=()=>{document.querySelectorAll(c).forEach(e=>S(e,b(e))),g(),v()},_=e=>{let t=e.target instanceof Element?e.target:null;if(e instanceof KeyboardEvent){if("Enter"!==e.key&&" "!==e.key&&"Spacebar"!==e.key)return;let a=t?.closest("input,textarea,select,[contenteditable]");if(a instanceof HTMLTextAreaElement||a instanceof HTMLSelectElement||a instanceof HTMLInputElement&&!["button","submit","image"].includes(a.type)||a instanceof HTMLElement&&a.isContentEditable)return}let a="submit"!==e.type?t?.closest('a,button,input[type="submit"],input[type="image"],input[type="button"],[role="button"],[role="link"]'):null;if("submit"!==e.type&&!a)return;let r=(a instanceof HTMLButtonElement?"submit"===a.type:a instanceof HTMLInputElement&&("submit"===a.type||"image"===a.type))&&(a instanceof HTMLButtonElement||a instanceof HTMLInputElement)?a.form:null,s=(a??t)?.closest(c)??null;for(;s;){if(a&&"FORM"===s.tagName&&s!==r){s=s.parentElement?.closest(c)??null;continue}let t=b(s);if(t){S(s,t),e.preventDefault(),e.stopImmediatePropagation(),v(!0);return}s=s.parentElement?.closest(c)??null}if(a&&r){let t=b(r);t&&(S(r,t),e.preventDefault(),e.stopImmediatePropagation(),v(!0))}};for(let e of(window.addEventListener("click",_,!0),window.addEventListener("submit",_,!0),["keydown","keypress","keyup"]))window.addEventListener(e,_,!0);new MutationObserver(E).observe(document.documentElement,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["href","formaction","action","data-rogue-action-requires","data-rogue-action-state","data-rogue-action-kind","lang"]}),window.addEventListener("focus",()=>v(!0)),window.addEventListener("pageshow",()=>v(!0)),document.addEventListener("visibilitychange",()=>{document.hidden||v(!0)}),setInterval(()=>{document.hidden||v()},3e4),E()})({"contacts":[],"emails":[],"dependencies":{"backend":false,"shopify":false},"providerDependencies":[],"language":"pt","inventedContacts":true},{"pt":"Indisponível no momento","en":"Not available yet"},{"pt":{"checking":"Carregando recursos…","unavailable":"Alguns recursos podem não funcionar agora. Tente novamente mais tarde.","setup":"Alguns recursos ainda não estão disponíveis."},"en":{"checking":"Loading features…","unavailable":"Some features may not work right now. Try again later.","setup":"Some features are not available yet."}},function(e,t=[],a=[]){let i,r,n=e.trim();if(/^tel:/i.test(n)){i="phone";try{r=decodeURIComponent(n.slice(4).split(/[;?]/,1)[0])}catch{r=""}}else if(/^mailto:/i.test(n)){i="email";try{let e=new URL(n);r=[decodeURIComponent(n.slice(7).split("?",1)[0]),...e.searchParams.getAll("cc"),...e.searchParams.getAll("bcc")].filter(Boolean).join(",")}catch{r=""}}else{let e;try{e=new URL(/^(?:wa\.me|(?:api|web)\.whatsapp\.com)\//i.test(n)?`https://${n}`:n)}catch{return null}let t=e.hostname.toLowerCase().replace(/^www\./,"");if("wa.me"===t&&/^https?:$/.test(e.protocol)){if(/^\/message\/[^/]+\/?$/i.test(e.pathname))return null;if(e.searchParams.has("phone"))r=e.searchParams.get("phone")??"";else{try{r=decodeURIComponent(e.pathname.replace(/^\/+|\/+$/g,""))}catch{r=""}if(!r)return null}}else{if(!(["api.whatsapp.com","web.whatsapp.com"].includes(t)&&/^https?:$/.test(e.protocol)&&/^\/send\/?$/i.test(e.pathname))&&("whatsapp:"!==e.protocol||"send"!==t)||!e.searchParams.has("phone"))return null;r=e.searchParams.get("phone")??""}i="whatsapp"}if(!r.trim())return{kind:i,reason:"missing"};if("email"===i){let e=r.split(/[;,]/).map(e=>e.trim().toLowerCase());return e.some(e=>!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)||/@(?:[^@]+\.)?(?:example\.(?:com|net|org)|example|invalid|test|localhost)$/i.test(e))?{kind:i,reason:"placeholder"}:e.every(e=>a.some(t=>t.trim().toLowerCase()===e))?null:{kind:i,reason:"unverified"}}let o=r.replace(/\D/g,"");if(!/^[+\d\s().-]+$/.test(r)||o.length<3||o.length>15||/^0+$/.test(o.replace(/^55/,"")))return{kind:i,reason:"placeholder"};if(o.length<8)return"phone"===i&&t.some(e=>e.replace(/\D/g,"")===o)?null:{kind:i,reason:"unverified"};let s=o.slice(-8);return t.some(e=>e.replace(/\D/g,"").endsWith(s))?null:{kind:i,reason:"unverified"}},function l(e,t,a,r,s,n){let i=e?n(e,s.contacts??[],s.emails??[]):null;return i&&!(s.inventedContacts&&"unverified"===i.reason)?i:(t??"").trim().split(/\s+/).filter(Boolean).find(e=>s.dependencies?.[e]!==!0)||"setup_required"===a?{kind:"payment"===r||"form"===r||"ai"===r?r:"service",reason:"setup_required"}:null});</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Farda de Pernambuco — Missão na Escola: separar brigas e ajudar alunos</title>
+<meta name="description" content="Jogo 2D dentro de uma escola: o oficial de farda pernambucana caminha pelo corredor, chega perto das brigas e dos alunos com problemas, aperta Agir e resolve cada situação até chegar à porta da direção.">
+<style>
+  :root{
+    --navy:#0d1b34;
+    --line:#23386a;
+    --gold:#f5c518;
+    --red:#d92d2d;
+    --text:#e8eef8;
+    --muted:#9fb2cc;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:radial-gradient(1200px 600px at 50% -10%, #16294c 0%, #0a1224 55%, #060b16 100%);
+    color:var(--text);
+    font-family:"Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overscroll-behavior:none;
+  }
+  .app{
+    height:100dvh;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding:8px;
+    max-width:1440px;
+    margin:0 auto;
+  }
+  /* ---------- HUD ---------- */
+  .hud{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:6px 10px;
+    background:linear-gradient(180deg,#152a4e,#0d1b34);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+  .hud-stats{display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-width:0;}
+  .stat{display:flex;flex-direction:column;line-height:1.1;min-width:0;}
+  .stat-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .stat-value{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .clima-wrap{display:flex;align-items:center;gap:6px;}
+  .clima-bar{display:block;width:84px;height:8px;border-radius:5px;background:#0a1730;border:1px solid #2b4478;overflow:hidden;}
+  .clima-bar > i{display:block;height:100%;width:0%;background:#5ad07a;transition:width .2s linear,background .3s linear;}
+  .lives{display:flex;align-items:center;gap:2px;font-size:14px;line-height:1;}
+  .lives .heart{color:#e04a4a;text-shadow:0 1px 0 rgba(0,0,0,.4);}
+  .lives .heart.off{color:#33415a;text-shadow:none;}
+  .stat.vilao .stat-value{font-size:12px;font-weight:800;color:#ff9b9b;white-space:nowrap;}
+  .xp-wrap{display:flex;align-items:center;gap:6px;}
+  .xp-bar{display:block;width:92px;height:8px;border-radius:5px;background:#0a1730;border:1px solid #2b4478;overflow:hidden;}
+  .xp-bar > i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#3f7ff0,#7fd3f0);transition:width .25s ease;}
+  .stat.xp .stat-value{font-size:11.5px;font-weight:700;color:#cfe0ff;font-variant-numeric:tabular-nums;}
+  .stat.phase .stat-value{font-size:13px;font-weight:700;color:#cfe0ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:32vw;}
+  .hud-actions{display:flex;align-items:center;gap:6px;flex:0 0 auto;}
+  .icon-btn{
+    appearance:none;height:34px;min-width:34px;padding:0 10px;border-radius:8px;
+    border:1px solid #2f4a80;background:#16294c;color:var(--text);
+    font:inherit;font-size:12px;font-weight:700;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:5px;
+    transition:background .15s ease,border-color .15s ease,transform .1s ease;
+  }
+  .icon-btn:hover{background:#1d3763;border-color:#3d5e9d;}
+  .icon-btn:active{transform:translateY(1px);}
+  .icon-btn:focus-visible,.btn:focus-visible,.ctrl:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  /* ---------- Palco ---------- */
+  .stage{
+    position:relative;flex:1 1 auto;min-height:0;border-radius:var(--radius);
+    overflow:hidden;background:#06101f;border:1px solid var(--line);
+    box-shadow:0 14px 34px rgba(0,0,0,.5);
+  }
+  .stage canvas{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    display:block;touch-action:none;
+    image-rendering:pixelated;image-rendering:crisp-edges;
+  }
+  /* ---------- Aviso ---------- */
+  .toast{
+    position:absolute;left:50%;bottom:10px;transform:translateX(-50%);
+    max-width:min(92%,520px);
+    padding:8px 14px;border-radius:999px;
+    background:rgba(11,24,46,.94);border:1px solid #3d5e9d;
+    color:#eaf2ff;font-size:12.5px;font-weight:600;line-height:1.35;text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.45);
+    opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s ease;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(-2px);}
+  /* ---------- Dica de como agir ---------- */
+  .prompt{
+    position:absolute;left:8px;top:8px;z-index:2;
+    display:none;align-items:center;gap:6px;
+    max-width:min(72%,360px);
+    padding:6px 10px;border-radius:9px;
+    background:rgba(11,24,46,.93);border:1px solid #3d5e9d;
+    box-shadow:0 6px 16px rgba(0,0,0,.4);
+    font-size:11.5px;font-weight:600;line-height:1.35;color:#dce8f9;
+    pointer-events:none;
+  }
+  .prompt.show{display:block;}
+  .prompt b{color:var(--gold);}
+  .choice-hint{margin:10px 0 0;font-size:11.5px;line-height:1.5;color:var(--muted);}
+  .choice-hint kbd{margin:0 1px;}
+  /* ---------- Overlay ---------- */
+  .overlay{
+    position:absolute;inset:0;display:none;place-items:center;padding:16px;overflow:auto;
+    background:rgba(5,11,22,.84);
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  }
+  .overlay.show{display:grid;}
+  .card{
+    width:100%;max-width:540px;
+    background:linear-gradient(180deg,#152a4e,#0c1830);
+    border:1px solid #2b4478;border-radius:14px;padding:20px 20px 18px;
+    box-shadow:0 20px 50px rgba(0,0,0,.55);
+    animation:pop .18s ease-out;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(6px) scale(.99);}to{opacity:1;transform:none;}}
+  .eyebrow{margin:0 0 6px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .card h1{margin:0 0 10px;font-size:clamp(20px,4.4vw,28px);line-height:1.15;letter-spacing:-.01em;}
+  .card .lead{margin:0 0 14px;color:#c3d3ea;font-size:14px;line-height:1.55;}
+  .card .lead strong{color:#fff;}
+  .hint-row{display:flex;flex-wrap:wrap;gap:8px 14px;margin:0 0 16px;font-size:12px;color:var(--muted);}
+  kbd{
+    display:inline-block;padding:1px 5px;margin-right:2px;border-radius:4px;
+    border:1px solid #3d5e9d;background:#0f1f3d;color:#dbe6f8;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;line-height:1.5;
+  }
+  .rules{margin:0 0 16px;padding-left:18px;font-size:13.5px;line-height:1.7;color:#cddbef;}
+  .rules strong{color:#fff;}
+  .actions{display:flex;flex-wrap:wrap;gap:8px;}
+  .btn{
+    appearance:none;padding:10px 18px;min-height:42px;border-radius:9px;
+    border:1px solid #2f4a80;background:#1a2b4d;color:var(--text);
+    font:inherit;font-size:14px;font-weight:700;cursor:pointer;
+    transition:background .15s ease,transform .1s ease,border-color .15s ease;
+  }
+  .btn:hover{background:#22375f;border-color:#43679f;}
+  .btn:active{transform:translateY(1px);}
+  .btn.primary{
+    background:linear-gradient(180deg,#ffd83d,#efb806);border-color:#c99b06;
+    color:#241a00;box-shadow:0 4px 0 #a97f04;
+  }
+  .btn.primary:hover{background:linear-gradient(180deg,#ffe15c,#f5c518);}
+  .btn.primary:active{box-shadow:0 1px 0 #a97f04;transform:translateY(2px);}
+  /* ---------- Escolha de ação ---------- */
+  .choices{display:flex;flex-direction:column;gap:8px;margin:0 0 4px;}
+  .choice{
+    appearance:none;width:100%;display:flex;align-items:flex-start;gap:10px;
+    padding:11px 13px;border-radius:9px;border:1px solid #2f4a80;
+    background:#16294c;color:var(--text);font:inherit;font-size:13.5px;
+    font-weight:600;line-height:1.4;text-align:left;cursor:pointer;
+    transition:background .15s ease,border-color .15s ease,transform .1s ease;
+  }
+  .choice:hover{background:#1d3763;border-color:#43679f;}
+  .choice:active{transform:translateY(1px);}
+  .choice:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .choice-num{
+    flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+    width:20px;height:20px;margin-top:1px;border-radius:6px;
+    background:#0f1f3d;border:1px solid #3d5e9d;color:#cfe0ff;
+    font-size:11px;font-weight:800;font-variant-numeric:tabular-nums;
+  }
+  /* ---------- Controles de toque ---------- */
+  .controls{
+    flex:0 0 auto;display:none;align-items:center;justify-content:space-between;
+    gap:10px;padding:2px 2px 4px;user-select:none;-webkit-user-select:none;
+  }
+  .pad{display:flex;gap:10px;}
+  .ctrl{
+    width:68px;height:58px;border-radius:14px;border:1px solid #2f4a80;
+    background:linear-gradient(180deg,#1b3160,#132648);color:#e8eef8;
+    font:inherit;font-size:20px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    touch-action:none;-webkit-tap-highlight-color:transparent;
+    transition:background .08s ease,transform .08s ease;
+  }
+  .ctrl.act{
+    width:112px;background:linear-gradient(180deg,#ffd83d,#efb806);border-color:#c99b06;
+    font-size:15px;letter-spacing:.04em;color:#241a00;text-transform:uppercase;
+    box-shadow:0 3px 0 #a97f04;
+  }
+  .ctrl.act.active{background:#f5c518;box-shadow:0 1px 0 #a97f04;}
+  .ctrl.act.ready{animation:actPulse 1.2s ease-in-out infinite;}
+  @keyframes actPulse{
+    0%,100%{box-shadow:0 3px 0 #a97f04,0 0 0 0 rgba(245,197,24,.55);}
+    50%{box-shadow:0 3px 0 #a97f04,0 0 0 8px rgba(245,197,24,0);}
+  }
+  .ctrl.active{transform:translateY(2px);background:#2b4c88;}
+  @media (hover:none), (max-width:820px){
+    .controls{display:flex;}
+    .stat.phase .stat-value{max-width:26vw;font-size:12px;}
+    .hud-actions .label{display:none;}
+    .icon-btn{padding:0 9px;}
+    .app{padding:6px;gap:5px;}
+  }
+  @media (max-width:520px){
+    .hud-stats{gap:10px;}
+    .stat.ajudas{display:none;}
+    .stat.vilao{display:none;}
+    .xp-bar{width:64px;height:7px;}
+    .lives{font-size:12.5px;}
+    .stat-value{font-size:13px;}
+    .clima-bar{width:60px;height:7px;}
+    .ctrl{width:60px;height:54px;}
+    .ctrl.act{width:98px;font-size:13px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+  }
+</style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Farda de Pernambuco — Missão na Escola">
+<meta property="og:description" content="Ande pelo corredor da escola, chegue perto das brigas e dos alunos com problemas e use Agir para resolver cada situação.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Farda de Pernambuco — Missão na Escola"><meta name="twitter:description" content="Ande pelo corredor da escola, chegue perto das brigas e dos alunos com problemas e use Agir para resolver cada situação."></head>
+<body>
+<div class="app">
+  <header class="hud">
+    <div class="hud-stats">
+      <div class="stat"><span class="stat-label">Pontos</span><span class="stat-value" id="hud-score">0</span></div>
+      <div class="stat ajudas"><span class="stat-label">Ajudas</span><span class="stat-value" id="hud-ajudas">0/0</span></div>
+      <div class="stat vidas"><span class="stat-label">Vidas</span><span class="lives" id="hud-lives" aria-label="5 de 5 vidas"></span></div>
+      <div class="stat xp"><span class="stat-label">XP · Nível <span id="hud-nivel">1</span></span><span class="xp-wrap"><span class="xp-bar"><i id="hud-xp-fill"></i></span><span class="stat-value" id="hud-xp">0/1000</span></span></div>
+      <div class="stat clima"><span class="stat-label">Clima da escola</span><span class="clima-wrap"><span class="clima-bar"><i id="hud-clima-fill"></i></span><span class="stat-value" id="hud-clima">0%</span></span></div>
+      <div class="stat vilao"><span class="stat-label">Vilão do setor</span><span class="stat-value" id="hud-vilao">Boné Vermelho</span></div>
+      <div class="stat phase"><span class="stat-label">Setor</span><span class="stat-value" id="hud-phase">1 · Boa Viagem</span></div>
+    </div>
+    <div class="hud-actions">
+      <button class="icon-btn" id="btn-pause" type="button" aria-label="Pausar jogo">❚❚<span class="label" style="margin-left:4px">Pausar</span></button>
+      <button class="icon-btn" id="btn-restart" type="button" aria-label="Reiniciar setor">⟲<span class="label" style="margin-left:4px">Reiniciar</span></button>
+      <button class="icon-btn" id="btn-help" type="button" aria-label="Como jogar" style="background: #e8eef8; color: #16294c">?<span class="label" style="margin-left:4px">Ajuda</span></button>
+      <button class="icon-btn" id="btn-sound" type="button" aria-label="Desligar som" aria-pressed="true">♪<span class="label" style="margin-left:4px">Som</span></button>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <canvas id="game" width="384" height="216" aria-label="Área do jogo: corredor da escola onde o oficial de farda caminha para ajudar os alunos"></canvas>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="prompt" id="prompt" role="status" aria-live="polite"></div>
+    <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="overlay-title"></div>
+  </main>
+
+  <div class="controls" id="controls">
+    <div class="pad">
+      <button class="ctrl" type="button" data-key="left" aria-label="Andar para a esquerda">◀</button>
+      <button class="ctrl" type="button" data-key="right" aria-label="Andar para a direita">▶</button>
+    </div>
+    <div class="pad">
+      <button class="ctrl act" type="button" data-key="act" aria-label="Agir: separar briga ou ajudar aluno">Agir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ===================== Base ===================== */
+  const VW = 384, VH = 216, TILE = 16, FLOOR_Y = 170;
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+  const stage = document.getElementById('stage');
+  const overlayEl = document.getElementById('overlay');
+  const toastEl = document.getElementById('toast');
+  const promptEl = document.getElementById('prompt');
+  const actCtrl = document.querySelector('.ctrl.act');
+  const scoreEl = document.getElementById('hud-score');
+  const ajudasEl = document.getElementById('hud-ajudas');
+  const climaEl = document.getElementById('hud-clima');
+  const climaFill = document.getElementById('hud-clima-fill');
+  const livesEl = document.getElementById('hud-lives');
+  const xpFill = document.getElementById('hud-xp-fill');
+  const xpEl = document.getElementById('hud-xp');
+  const nivelEl = document.getElementById('hud-nivel');
+  const phaseEl = document.getElementById('hud-phase');
+  const vilaoEl = document.getElementById('hud-vilao');
+  const pauseBtn = document.getElementById('btn-pause');
+  const restartBtn = document.getElementById('btn-restart');
+  const helpBtn = document.getElementById('btn-help');
+  const soundBtn = document.getElementById('btn-sound');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v,a,b)=> v<a?a:(v>b?b:v);
+  const R = (x,y,w,h,c)=>{ ctx.fillStyle=c; ctx.fillRect(x,y,w,h); };
+
+  /* ===================== Cores dos setores ===================== */
+  const THEMES = {
+    praia:{ wall1:'#f6fcff', wall2:'#dcebf3', wall3:'#c6dbe7', ceiling:'#b7ccd9',
+      trim:'#1d4f9e', tile:'#8fbfd6', floor:'#cfdce4', floorLine:'#a9bcc7',
+      locker:'#2a63bd', lockerDark:'#1d4f9e', door:'#7a5232', doorLight:'#a97845',
+      lamp:'#fff4c4', accent:'#1d4f9e' },
+    cidade:{ wall1:'#fdf4e9', wall2:'#f4e0cc', wall3:'#e3c9b0', ceiling:'#cfae90',
+      trim:'#2a63bd', tile:'#cbaa89', floor:'#dcc7b0', floorLine:'#b9a08a',
+      locker:'#3f6fb5', lockerDark:'#2a63bd', door:'#6f4530', doorLight:'#a06a49',
+      lamp:'#ffe7bd', accent:'#2a63bd' },
+    sertao:{ wall1:'#fdf2d6', wall2:'#f6dfba', wall3:'#e8c9a0', ceiling:'#cfae86',
+      trim:'#c0562f', tile:'#c49b6c', floor:'#dab68a', floorLine:'#b58f65',
+      locker:'#c9733f', lockerDark:'#a34c2c', door:'#6d452a', doorLight:'#9c6538',
+      lamp:'#ffe9b8', accent:'#c0562f' },
+    quadra:{ wall1:'#eef9f1', wall2:'#dcf0e1', wall3:'#c4e0c9', ceiling:'#a9c9b0',
+      trim:'#2e7d4f', tile:'#9ecfaa', floor:'#cadecf', floorLine:'#a6c4ab',
+      locker:'#3fa06a', lockerDark:'#2e7d4f', door:'#6b4a2f', doorLight:'#9a7048',
+      lamp:'#e9ffd9', accent:'#2e7d4f' },
+    biblioteca:{ wall1:'#f7f2fc', wall2:'#e8ddf4', wall3:'#d4c5e8', ceiling:'#bfaed6',
+      trim:'#6a3fa0', tile:'#bca9d8', floor:'#ded4ec', floorLine:'#bfaad8',
+      locker:'#7b52b8', lockerDark:'#6a3fa0', door:'#5a3a26', doorLight:'#8a5c3a',
+      lamp:'#f6e6ff', accent:'#6a3fa0' }
+  };
+
+  const LOOKS = [
+    { shirt:'#e0574f', hair:'#2b1d12', skin:'#c98a5b' },
+    { shirt:'#4f7fe0', hair:'#1e1e28', skin:'#8a5a34' },
+    { shirt:'#38a169', hair:'#3a2a1a', skin:'#d9a06f' },
+    { shirt:'#e8a33d', hair:'#4a2f1a', skin:'#b97a4d' },
+    { shirt:'#9a5cd0', hair:'#1a1a22', skin:'#6f4a2b' },
+    { shirt:'#2fa3a3', hair:'#241a13', skin:'#e0ab7c' }
+  ];
+
+  /* ===================== Falas por tipo de situação ===================== */
+  const SITS = {
+    briga: [
+      { who:'Briga na fila do bebedouro', fix:'Você separou os dois e eles apertaram as mãos.' },
+      { who:'Empurra-empurra na saída da sala', fix:'Você acalmou a turma e a saída ficou organizada.' },
+      { who:'Discussão por causa de um caderno', fix:'Você ouviu os dois lados e o caderno foi devolvido.' },
+      { who:'Briga por causa do lugar na quadra', fix:'Você combinou um revezamento e a briga terminou.' },
+      { who:'Dois colegas aos gritos no corredor', fix:'Você levou os dois para conversar com calma.' }
+    ],
+    bully: [
+      { who:'Aluno maior implicando com o menor', fix:'Você conversou com os dois e a implicância parou.' },
+      { who:'Apelido maldoso escrito no mural', fix:'Você apagou o apelido e avisou a coordenação.' },
+      { who:'Colegas rindo de um aluno novo', fix:'Você explicou o valor do respeito e o grupo parou.' },
+      { who:'Aluno mexendo na mochila dos outros', fix:'Você pediu respeito e a mochila foi devolvida.' },
+      { who:'Turma excluindo um colega do jogo', fix:'Você chamou o aluno para o time e todos jogaram.' }
+    ],
+    triste: [
+      { who:'Aluna chorando perto do mural', fix:'Você ouviu a aluna e a levou para a coordenação.' },
+      { who:'Aluno triste porque esqueceu o trabalho', fix:'Você falou com a professora e ela deu novo prazo.' },
+      { who:'Aluno com medo de apresentar o trabalho', fix:'Você incentivou o aluno e ele conseguiu apresentar.' },
+      { who:'Colega preocupado com a nota baixa', fix:'Você marcou um reforço e o aluno ficou mais calmo.' },
+      { who:'Aluno com sono e sem comer de manhã', fix:'Você conseguiu um lanche e o aluno melhorou.' }
+    ],
+    perdido: [
+      { who:'Aluno novo perdido no corredor', fix:'Você mostrou o caminho até a sala dele.' },
+      { who:'Criança procurando a sala de leitura', fix:'Você levou a criança até a biblioteca.' },
+      { who:'Aluno que perdeu o material escolar', fix:'Você ajudou a procurar e o material apareceu.' },
+      { who:'Aluno sem saber onde é a secretaria', fix:'Você acompanhou o aluno até a secretaria.' },
+      { who:'Colega que não acha a sala de informática', fix:'Você indicou o caminho e ele chegou na hora.' }
+    ]
+  };
+
+  function levelSituations(defs){
+    const count = { briga:0, bully:0, triste:0, perdido:0 };
+    return defs.map(function(d){
+      const type = d[1];
+      const pool = SITS[type];
+      const item = pool[count[type] % pool.length];
+      count[type]++;
+      return { tx:d[0], type:type, who:item.who, fix:item.fix };
+    });
+  }
+
+  const LEVELS = [
+    {
+      name:'Boa Viagem', theme:'praia', width:100, villainTx:[26, 62],
+      situations: levelSituations([
+        [12,'briga'],[22,'bully'],[33,'triste'],[44,'perdido'],
+        [56,'briga'],[68,'triste'],[80,'bully'],[90,'triste']
+      ])
+    },
+    {
+      name:'Recife Antigo', theme:'cidade', width:116, villainTx:[24, 58, 94],
+      situations: levelSituations([
+        [10,'briga'],[20,'perdido'],[31,'bully'],[42,'triste'],
+        [54,'briga'],[66,'triste'],[78,'bully'],[90,'briga'],[101,'perdido']
+      ])
+    },
+    {
+      name:'Sertão do Frevo', theme:'sertao', width:132, villainTx:[22, 50, 82, 116],
+      situations: levelSituations([
+        [9,'briga'],[19,'bully'],[30,'triste'],[41,'perdido'],[52,'briga'],
+        [63,'bully'],[74,'triste'],[86,'briga'],[97,'perdido'],[108,'triste'],[119,'bully']
+      ])
+    },
+    {
+      name:'Quadra Coberta', theme:'quadra', width:148, villainTx:[22, 48, 78, 108, 138],
+      situations: levelSituations([
+        [9,'briga'],[18,'perdido'],[27,'bully'],[36,'triste'],[45,'briga'],[54,'perdido'],
+        [63,'triste'],[72,'bully'],[81,'briga'],[90,'triste'],[99,'perdido'],[108,'briga'],
+        [117,'bully'],[126,'triste'],[135,'perdido']
+      ])
+    },
+    {
+      name:'Biblioteca Central', theme:'biblioteca', width:164, villainTx:[20, 46, 78, 110, 138, 158],
+      situations: levelSituations([
+        [9,'triste'],[17,'briga'],[25,'perdido'],[33,'bully'],[41,'briga'],[49,'triste'],
+        [57,'perdido'],[65,'bully'],[73,'briga'],[81,'triste'],[89,'perdido'],[97,'briga'],
+        [105,'bully'],[113,'triste'],[121,'briga'],[129,'perdido'],[137,'triste'],[145,'bully'],[152,'briga']
+      ])
+    }
+  ];
+
+  /* ===================== Estado ===================== */
+  let level = null, situations = [], idlers = [], villains = [];
+  let player = null, camX = 0, time = 0;
+  let levelIndex = 0, score = 0, resolvedCount = 0, totalSit = 0;
+  const MAX_LIVES = 5, PATIENCE_MAX = 600;
+  let lives = MAX_LIVES, xp = 0, xpNext = 1000, nivel = 1;
+  let state = 'menu', prevState = 'menu';
+  let active = null, activeIsVillain = false, actionT = 0, actionMax = 36, nearSit = null, nearVil = null;
+  let pendingTarget = null, pendingIsVillain = false;
+  let toastT = 0;
+  const keys = { left:false, right:false };
+
+  /* ===================== Áudio ===================== */
+  let actx = null, muted = false;
+  function ensureAudio(){
+    if(!actx){
+      try{ actx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){ actx = null; }
+    }
+    if(actx && actx.state === 'suspended'){ actx.resume(); }
+  }
+  function tone(freq, dur, type, vol, delay){
+    if(!actx) return;
+    const t0 = actx.currentTime + (delay || 0);
+    const osc = actx.createOscillator();
+    const gain = actx.createGain();
+    osc.type = type || 'square';
+    osc.frequency.setValueAtTime(freq, t0);
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(vol || 0.06, t0 + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(gain); gain.connect(actx.destination);
+    osc.start(t0); osc.stop(t0 + dur + 0.03);
+  }
+  function sfx(name){
+    if(muted) return;
+    ensureAudio();
+    if(!actx) return;
+    if(name === 'act'){ tone(520,0.07,'square',0.05); }
+    else if(name === 'good'){ [660,880,1180].forEach((f,i)=>tone(f,0.12,'triangle',0.055,i*0.07)); }
+    else if(name === 'blip'){ tone(300,0.06,'square',0.04); }
+    else if(name === 'win'){ [523,659,784,1046].forEach((f,i)=>tone(f,0.16,'triangle',0.06,i*0.09)); }
+    else if(name === 'over'){ [420,330,250,170].forEach((f,i)=>tone(f,0.2,'square',0.05,i*0.12)); }
+  }
+
+  /* ===================== Ajuste do canvas ===================== */
+  function fitCanvas(){
+    const r = stage.getBoundingClientRect();
+    if(!r.width || !r.height) return;
+    const s = Math.min(r.width / VW, r.height / VH);
+    canvas.style.width = Math.floor(VW * s) + 'px';
+    canvas.style.height = Math.floor(VH * s) + 'px';
+  }
+  window.addEventListener('resize', fitCanvas);
+
+  /* ===================== Montagem da fase ===================== */
+  function exitDoorX(){ return (level.def.width - 3) * TILE; }
+
+  function buildLevel(idx){
+    const def = LEVELS[idx];
+    level = { def:def, widthPx:def.width * TILE };
+    situations = def.situations.map(function(s){
+      return {
+        x: s.tx * TILE, type:s.type, who:s.who, fix:s.fix,
+        done:false, phase: Math.random() * 6.28,
+        alert:0, cool:0, punished:false
+      };
+    });
+    totalSit = situations.length;
+    resolvedCount = 0;
+    score = score; // mantido entre setores
+    idlers = buildIdlers(def);
+    villains = buildVillains(def, idx);
+    camX = 0;
+    active = null; activeIsVillain = false; actionT = 0; actionMax = 36; nearSit = null; nearVil = null;
+    pendingTarget = null; pendingIsVillain = false;
+    player = { x:40, y:FLOOR_Y - 20, w:14, h:20, vx:0, face:1, walkT:0 };
+    hideToast();
+    updateHUD();
+    const kind = villainKindFor(idx);
+    showToast('Setor ' + (idx + 1) + ' · ' + def.name + ': cuidado com o ' + kind.name + '!', 220);
+  }
+
+  function buildIdlers(def){
+    const arr = [];
+    let k = 0;
+    for(let tx = 8; tx < def.width - 6; tx += 8){
+      k++;
+      if(k % 3 === 0) continue;
+      const x = tx * TILE;
+      if(def.situations.some(function(s){ return Math.abs(s.tx * TILE - x) < 60; })) continue;
+      arr.push({
+        x:x, x0:x - 22, x1:x + 22, dir: (k % 2 ? 1 : -1),
+        sp: 0.16 + (k % 3) * 0.06, look: LOOKS[k % LOOKS.length], t: k * 1.3
+      });
+    }
+    return arr;
+  }
+
+  /* Cada fase tem o SEU vilão: nome, chapéu, cores, velocidade e pressa mudam a cada setor */
+  const VILLAIN_KINDS = [
+    { name:'Boné Vermelho', hat:'cap', sp:0.62, press:0.70,
+      cape:'#2a0f2e', capeTop:'#3f1a45', coat:'#3a1620', coatTop:'#4d1d2a', coatDark:'#241019',
+      cap:'#c22a2a', capTop:'#e04040', capDark:'#8f1d1d', eye:'#ff3b3b', glow:'rgba(217,45,45,',
+      skin:'#b3764a', hair:'#1a1420' },
+    { name:'Encapuzado Verde', hat:'hood', sp:0.84, press:0.85,
+      cape:'#0c2620', capeTop:'#154438', coat:'#163a2c', coatTop:'#22563f', coatDark:'#0e2419',
+      cap:'#2f8f4f', capTop:'#4fc177', capDark:'#1b6136', eye:'#ffe14d', glow:'rgba(245,197,24,',
+      skin:'#8a5a34', hair:'#12100e' },
+    { name:'Cangaceiro Sombrio', hat:'leather', sp:0.72, press:0.95,
+      cape:'#3a2410', capeTop:'#54351a', coat:'#4a2a16', coatTop:'#6b3d1f', coatDark:'#2e1a0d',
+      cap:'#6b4a24', capTop:'#8a6431', capDark:'#3f2a12', eye:'#ff8a3d', glow:'rgba(224,112,40,',
+      skin:'#a06a3f', hair:'#1a1208' },
+    { name:'Gigante da Quadra', hat:'band', sp:0.90, press:1.05,
+      cape:'#101a3a', capeTop:'#1b2a5c', coat:'#16306b', coatTop:'#22458f', coatDark:'#0d1c40',
+      cap:'#2f6fd0', capTop:'#5a9bf0', capDark:'#1b448f', eye:'#7fe0ff', glow:'rgba(79,140,240,',
+      skin:'#7c4a2a', hair:'#141018' },
+    { name:'Fantasma da Biblioteca', hat:'ghost', sp:0.78, press:1.20,
+      cape:'#241a33', capeTop:'#35264a', coat:'#332448', coatTop:'#4a3568', coatDark:'#1d1429',
+      cap:'#c9b8e4', capTop:'#e6ddf5', capDark:'#9a86bd', eye:'#b7f5ff', glow:'rgba(160,120,220,',
+      skin:'#d8d2e8', hair:'#1a1424' }
+  ];
+
+  function villainKindFor(idx){
+    return VILLAIN_KINDS[idx % VILLAIN_KINDS.length];
+  }
+
+  function buildVillains(def, idx){
+    const arr = [];
+    const spots = def.villainTx || [];
+    const kind = villainKindFor(idx);
+    for(let i = 0; i < spots.length; i++){
+      const hx = spots[i] * TILE;
+      const k = kind;
+      arr.push({
+        x:hx,
+        x0:Math.max(24, hx - 6 * TILE),
+        x1:Math.min(def.width * TILE - 24, hx + 6 * TILE),
+        dir:1, sp:k.sp, k:k, done:false, leaveT:0, t:i * 1.7, phase:i * 1.9
+      });
+    }
+    return arr;
+  }
+
+  /* ===================== HUD ===================== */
+  function updateHUD(){
+    scoreEl.textContent = String(score);
+    ajudasEl.textContent = resolvedCount + '/' + totalSit;
+    let hearts = '';
+    for(let i = 0; i < MAX_LIVES; i++){
+      hearts += '<span class="heart' + (i < lives ? '' : ' off') + '">♥</span>';
+    }
+    livesEl.innerHTML = hearts;
+    livesEl.setAttribute('aria-label', lives + ' de ' + MAX_LIVES + ' vidas');
+    const xpPct = xpNext ? clamp(Math.round(xp / xpNext * 100), 0, 100) : 0;
+    xpFill.style.width = xpPct + '%';
+    xpEl.textContent = xp + '/' + xpNext;
+    xpEl.setAttribute('aria-label', 'XP: ' + xp + ' de ' + xpNext);
+    nivelEl.textContent = String(nivel);
+    const pct = totalSit ? Math.round(resolvedCount / totalSit * 100) : 0;
+    climaFill.style.width = pct + '%';
+    climaFill.style.background = pct < 40 ? '#ecc94b' : (pct < 100 ? '#5ad07a' : '#38e07a');
+    climaEl.textContent = pct + '%';
+    climaEl.setAttribute('aria-label', 'Clima da escola: ' + pct + ' por cento');
+    phaseEl.textContent = (levelIndex + 1) + ' · ' + LEVELS[levelIndex].name;
+    if(villains.length){
+      const free = villains.filter(function(v){ return !v.done; }).length;
+      const kind = villainKindFor(levelIndex);
+      vilaoEl.textContent = free ? (free + '× ' + kind.name) : (kind.name + ': contido');
+      vilaoEl.style.color = free ? '#ff9b9b' : '#7fe0a0';
+      vilaoEl.setAttribute('aria-label', free ? (kind.name + ': ' + free + (free > 1 ? ' vilões à solta' : ' vilão à solta') + ' no corredor') : (kind.name + ' contido'));
+    } else {
+      vilaoEl.textContent = '—';
+    }
+  }
+
+  /* ===================== Aviso ===================== */
+  function showToast(msg, frames){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    toastT = frames || 160;
+  }
+  function hideToast(){
+    toastEl.classList.remove('show');
+    toastT = 0;
+  }
+
+  /* ===================== Ação ===================== */
+  function findNear(){
+    if(!player) return null;
+    const px = player.x + player.w / 2;
+    let best = null, bestD = 1e9;
+    for(const s of situations){
+      if(s.done) continue;
+      const d = Math.abs(px - (s.x + 8));
+      if(d < 36 && d < bestD){ best = s; bestD = d; }
+    }
+    return best;
+  }
+
+  function findNearVillain(){
+    if(!player) return null;
+    const px = player.x + player.w / 2;
+    let best = null, bestD = 1e9;
+    for(const v of villains){
+      if(v.done) continue;
+      const d = Math.abs(px - (v.x + 7));
+      if(d < 34 && d < bestD){ best = v; bestD = d; }
+    }
+    return best;
+  }
+
+  /* Formas de agir: a escolha certa rende mais pontos */
+  const CHOICES = {
+    briga: [
+      { t:'Separar os dois e ouvir cada lado com calma', q:'best' },
+      { t:'Gritar mais alto até eles pararem', q:'meh' },
+      { t:'Passar reto e deixar a briga continuar', q:'bad' }
+    ],
+    bully: [
+      { t:'Chamar quem implicou para conversar e avisar a coordenação', q:'best' },
+      { t:'Rir junto para não sobrar para você', q:'bad' },
+      { t:'Só pedir para parar de longe, sem conversar', q:'meh' }
+    ],
+    triste: [
+      { t:'Sentar, ouvir com atenção e encaminhar à coordenação', q:'best' },
+      { t:'Dizer que é bobagem e seguir andando', q:'bad' },
+      { t:'Falar do problema dele na frente da turma', q:'bad' }
+    ],
+    perdido: [
+      { t:'Acompanhar o aluno até a sala certa', q:'best' },
+      { t:'Apontar o corredor e torcer para acertar', q:'meh' },
+      { t:'Dizer para ele se virar sozinho', q:'bad' }
+    ],
+    vilao: [
+      { t:'Falar firme e levar ele para a direção', q:'best' },
+      { t:'Partir para a briga com ele no corredor', q:'bad' },
+      { t:'Só avisar a turma para não chegar perto', q:'meh' }
+    ]
+  };
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c];
+    });
+  }
+
+  function tryAct(){
+    if(state !== 'playing' || pendingTarget) return;
+    ensureAudio();
+    const v = findNearVillain();
+    if(v){ openChoice(v, true); return; }
+    const s = findNear();
+    if(!s){
+      sfx('blip');
+      showToast('Chegue mais perto de quem precisa de ajuda ou do valentão.', 110);
+      return;
+    }
+    openChoice(s, false);
+  }
+
+  function openChoice(target, isVillain){
+    pendingTarget = target;
+    pendingIsVillain = isVillain;
+    keys.left = keys.right = false;
+    state = 'choice';
+    sfx('act');
+    const type = isVillain ? 'vilao' : target.type;
+    const opts = CHOICES[type] || CHOICES.briga;
+    const title = isVillain ? ('O ' + VILLAIN_KINDS[levelIndex % VILLAIN_KINDS.length].name + ' bloqueia o corredor') : target.who;
+    let html = '<div class="card">' +
+      '<p class="eyebrow">' + (isVillain ? 'Confronto' : 'Como agir?') + '</p>' +
+      '<h1 id="overlay-title">' + escapeHtml(title) + '</h1>' +
+      '<p class="lead">' + (isVillain ? 'Escolha como conduzir o confronto.' : 'Escolha a forma de agir.') +
+        ' Conversar e ouvir rende mais pontos e XP; a escolha errada faz a situação piorar.</p>' +
+      '<div class="choices">';
+    for(let i = 0; i < opts.length; i++){
+      html += '<button class="choice" type="button" data-choice="' + i + '">' +
+        '<span class="choice-num">' + (i + 1) + '</span><span>' + escapeHtml(opts[i].t) + '</span></button>';
+    }
+    html += '</div>' +
+      '<p class="choice-hint">Toque em uma opção ou aperte <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd>. ' +
+        '<kbd>Esc</kbd> volta ao corredor sem agir.</p>' +
+      '<div class="actions" style="margin-top:12px">' +
+        '<button class="btn" type="button" data-action="cancel-choice">Voltar ao corredor</button>' +
+      '</div>' +
+      '</div>';
+    setOverlay(html);
+  }
+
+  function cancelChoice(){
+    if(state !== 'choice') return;
+    pendingTarget = null;
+    pendingIsVillain = false;
+    state = 'playing';
+    hideOverlay();
+  }
+
+  function resolveChoice(i){
+    if(state !== 'choice' || !pendingTarget) return;
+    const target = pendingTarget;
+    const isVillain = pendingIsVillain;
+    const type = isVillain ? 'vilao' : target.type;
+    const opts = CHOICES[type] || CHOICES.briga;
+    const opt = opts[i];
+    pendingTarget = null;
+    pendingIsVillain = false;
+    state = 'playing';
+    hideOverlay();
+    if(!opt) return;
+
+    if(isVillain){
+      if(opt.q === 'best'){
+        target.done = true;
+        target.leaveT = 0;
+        score += 400;
+        sfx('good');
+        addXp(400);
+        showToast('✔ Você falou firme e levou o valentão para a direção. +400 pontos e XP', 220);
+        updateHUD();
+      } else if(opt.q === 'meh'){
+        score += 100;
+        sfx('blip');
+        addXp(40);
+        showToast('Ele recuou por enquanto. +100 pontos, mas ele volta a rondar.', 200);
+        updateHUD();
+      } else {
+        sfx('over');
+        loseLife('Você partiu para a briga: o confronto piorou e você perdeu 1 vida.');
+        updateHUD();
+      }
+      return;
+    }
+
+    if(opt.q === 'best'){
+      finishSituation(target);
+    } else if(opt.q === 'meh'){
+      target.cool = 0;
+      target.alert = Math.min(PATIENCE_MAX - 1, target.alert + 240);
+      score += 90;
+      sfx('blip');
+      addXp(40);
+      showToast('Ajudou só em parte: +90 pontos. A paciência de quem precisa de ajuda está acabando.', 210);
+      updateHUD();
+    } else {
+      sfx('over');
+      worseSituation(target);
+      updateHUD();
+    }
+  }
+
+  function finishSituation(s){
+    if(!s || s.done) return;
+    s.done = true;
+    s.alert = 0;
+    resolvedCount++;
+    const pts = (s.type === 'briga' || s.type === 'bully') ? 350 : 250;
+    score += pts;
+    updateHUD();
+    sfx('good');
+    if(resolvedCount >= totalSit){
+      showToast('✔ ' + s.fix + ' +' + pts + ' pontos e XP — Tudo resolvido! Vá até a porta da direção.', 260);
+    } else {
+      showToast('✔ ' + s.fix + ' +' + pts + ' pontos e XP', 170);
+    }
+    addXp(pts);
+    updateHUD();
+  }
+
+  function worseSituation(s){
+    s.alert = 0;
+    s.cool = 210;
+    if(!s.punished){
+      s.punished = true;
+      loseLife('A situação piorou! Você perdeu 1 vida.');
+    } else {
+      showToast('A situação piorou de novo. Resolva logo!', 120);
+    }
+  }
+
+  function addXp(gain){
+    xp += gain;
+    let ups = 0;
+    while(xp >= xpNext){
+      xp -= xpNext;
+      nivel++;
+      xpNext = 1000 + (nivel - 1) * 500;
+      ups++;
+    }
+    if(ups > 0){
+      sfx('win');
+      if(lives < MAX_LIVES){
+        lives = clamp(lives + ups, 0, MAX_LIVES);
+        showToast('Nível ' + nivel + '! Você ganhou ' + ups + (ups > 1 ? ' vidas.' : ' vida.'), 240);
+      } else {
+        const bonus = 250 * ups;
+        score += bonus;
+        showToast('Nível ' + nivel + '! Bônus de ' + bonus + ' pontos.', 240);
+      }
+    }
+    updateHUD();
+  }
+
+  function loseLife(msg){
+    lives = Math.max(0, lives - 1);
+    updateHUD();
+    showToast(msg, 210);
+    if(lives <= 0){ showGameOver(); return; }
+    sfx('over');
+  }
+
+  function showGameOver(){
+    if(state === 'gameover') return;
+    state = 'gameover';
+    setOverlay(
+      '<div class="card">' +
+        '<p class="eyebrow">Sem vidas</p>' +
+        '<h1 id="overlay-title">A escola ainda precisa de você</h1>' +
+        '<p class="lead">Você perdeu as <strong>' + MAX_LIVES + '</strong> vidas no setor <strong>' + (levelIndex + 1) + ' · ' + LEVELS[levelIndex].name + '</strong> — <strong>' + score + '</strong> pontos, nível <strong>' + nivel + '</strong>.</p>' +
+        '<div class="actions">' +
+          '<button class="btn primary" type="button" data-action="restart-level">Tentar o setor de novo</button>' +
+          '<button class="btn" type="button" data-action="restart">Começar do início</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  /* ===================== Dica de como agir ===================== */
+  function refreshPrompt(){
+    if(!player || state !== 'playing'){
+      promptEl.classList.remove('show');
+      promptEl.innerHTML = '';
+      promptEl.dataset.msg = '';
+      if(actCtrl) actCtrl.classList.remove('ready');
+      return;
+    }
+    let msg, ready = false;
+    if(nearVil){
+      msg = '<b>' + escapeHtml(nearVil.k.name) + '</b> está na sua frente. Aperte <b>Agir</b> e escolha como conduzir o confronto.';
+      ready = true;
+    } else if(nearSit){
+      msg = '<b>' + escapeHtml(nearSit.who) + '</b> — aperte <b>Agir</b> (Espaço ou E) e escolha como agir.';
+      ready = true;
+    } else {
+      msg = 'Ande com <b>← →</b> até alguém com <b>!</b> ou <b>?</b> e aperte <b>Agir</b> para resolver.';
+    }
+    if(promptEl.dataset.msg !== msg){
+      promptEl.innerHTML = msg;
+      promptEl.dataset.msg = msg;
+    }
+    promptEl.classList.add('show');
+    if(actCtrl) actCtrl.classList.toggle('ready', ready);
+  }
+
+  /* ===================== Atualização ===================== */
+  function update(){
+    if(!player || !level) return;
+    const P = player;
+
+    const goLeft = keys.left && !keys.right;
+    const goRight = keys.right && !keys.left;
+    if(goLeft){ P.vx -= 0.62; P.face = -1; }
+    else if(goRight){ P.vx += 0.62; P.face = 1; }
+    else { P.vx *= 0.74; if(Math.abs(P.vx) < 0.06) P.vx = 0; }
+    P.vx = clamp(P.vx, -2.1, 2.1);
+    P.x = clamp(P.x + P.vx, 6, level.widthPx - P.w - 6);
+    if(Math.abs(P.vx) > 0.2) P.walkT++;
+
+    for(const g of idlers){
+      g.x += g.sp * g.dir;
+      if(g.x > g.x1){ g.x = g.x1; g.dir = -1; }
+      if(g.x < g.x0){ g.x = g.x0; g.dir = 1; }
+      g.t += 0.05;
+    }
+
+    for(const v of villains){
+      if(v.done){
+        if(v.leaveT < 130){ v.x += 2.2; v.leaveT++; }
+        continue;
+      }
+      let tgt = null, bd = 1e9;
+      for(const s of situations){
+        if(s.done) continue;
+        const d = Math.abs((s.x + 8) - (v.x + 7));
+        if(d < bd){ bd = d; tgt = s; }
+      }
+      if(tgt){
+        v.dir = (tgt.x + 8) > (v.x + 7) ? 1 : -1;
+        if(bd > 26){
+          v.x += v.sp * v.dir;
+          v.t += 0.1;
+        } else {
+          v.t += 0.12;
+          if(tgt.alert < PATIENCE_MAX){
+            tgt.alert = Math.min(PATIENCE_MAX, tgt.alert + v.k.press);
+            if(tgt.alert >= PATIENCE_MAX){
+              worseSituation(tgt);
+              if(state !== 'playing') return;
+            }
+          }
+        }
+      } else {
+        v.x += v.sp * v.dir;
+        if(v.x > v.x1){ v.x = v.x1; v.dir = -1; }
+        if(v.x < v.x0){ v.x = v.x0; v.dir = 1; }
+        v.t += 0.08;
+      }
+      v.x = clamp(v.x, 12, level.widthPx - 26);
+    }
+
+    nearSit = findNear();
+    nearVil = findNearVillain();
+    refreshPrompt();
+
+    // Paciência: se o oficial demora perto de uma situação, ela piora e custa uma vida
+    const pxC = P.x + P.w / 2;
+    for(const s of situations){
+      if(s.done) continue;
+      if(s.alert > 0 || s.cool > 0){
+        if(s.cool > 0){ s.cool--; continue; }
+      }
+      if(Math.abs(pxC - (s.x + 8)) < 64){
+        s.alert++;
+        if(s.alert >= PATIENCE_MAX){
+          worseSituation(s);
+          if(state !== 'playing') return;
+        }
+      } else if(s.alert > 0){
+        s.alert = Math.max(0, s.alert - 1.6);
+      }
+    }
+
+    const target = clamp(P.x + P.w / 2 - VW / 2, 0, level.widthPx - VW);
+    camX += (target - camX) * 0.2;
+    if(Math.abs(target - camX) < 0.4) camX = target;
+
+    if(toastT > 0){
+      toastT--;
+      if(toastT === 0) hideToast();
+    }
+
+    if(resolvedCount >= totalSit && P.x + P.w > exitDoorX() + 12){
+      clearLevel();
+    }
+  }
+
+  /* ===================== Desenho: parede ===================== */
+  function drawWall(cam){
+    const t = THEMES[level.def.theme];
+    const g = ctx.createLinearGradient(0, 0, 0, 156);
+    g.addColorStop(0, t.wall1);
+    g.addColorStop(0.65, t.wall2);
+    g.addColorStop(1, t.wall3);
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, VW, VH);
+
+    R(0, 0, VW, 7, t.ceiling);
+    R(0, 7, VW, 2, 'rgba(0,0,0,0.12)');
+
+    // luminárias
+    const lstep = 112;
+    let lstart = Math.floor(cam / lstep) * lstep;
+    for(let wx = lstart - lstep; wx < cam + VW + lstep; wx += lstep){
+      const sx = Math.round(wx - cam);
+      R(sx + 20, 1, 2, 6, '#8497ab');
+      ctx.fillStyle = t.lamp;
+      ctx.beginPath();
+      ctx.moveTo(sx + 2, 14); ctx.lineTo(sx + 40, 14);
+      ctx.lineTo(sx + 34, 8); ctx.lineTo(sx + 8, 8);
+      ctx.closePath(); ctx.fill();
+      ctx.globalAlpha = 0.10;
+      ctx.beginPath();
+      ctx.moveTo(sx + 4, 14); ctx.lineTo(sx + 38, 14);
+      ctx.lineTo(sx + 58, 84); ctx.lineTo(sx - 16, 84);
+      ctx.closePath(); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    // janelas altas
+    const wstep = 224;
+    let wstart = Math.floor(cam / wstep) * wstep;
+    for(let wx = wstart - wstep; wx < cam + VW + wstep; wx += wstep){
+      drawWindow(Math.round(wx - cam) + 24, 22, t);
+    }
+
+    // faixa de azulejo
+    R(0, 120, VW, 24, t.tile);
+    R(0, 120, VW, 2, 'rgba(255,255,255,0.38)');
+    R(0, 142, VW, 2, 'rgba(0,0,0,0.12)');
+    const tstep = 16;
+    let tstart = Math.floor(cam / tstep) * tstep;
+    for(let wx = tstart - tstep; wx < cam + VW + tstep; wx += tstep){
+      const sx = Math.round(wx - cam);
+      R(sx, 122, 1, 20, 'rgba(255,255,255,0.28)');
+      R(sx + 8, 122, 1, 20, 'rgba(0,0,0,0.05)');
+    }
+  }
+
+  function drawWindow(sx, y, t){
+    R(sx - 3, y - 3, 62, 54, t.trim);
+    const g = ctx.createLinearGradient(sx, y, sx, y + 46);
+    g.addColorStop(0, 'rgba(255,255,255,0.98)');
+    g.addColorStop(1, 'rgba(255,255,255,0.62)');
+    ctx.fillStyle = g;
+    ctx.fillRect(sx, y, 56, 46);
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.beginPath();
+    ctx.moveTo(sx + 4, y + 42); ctx.lineTo(sx + 26, y + 4);
+    ctx.lineTo(sx + 38, y + 4); ctx.lineTo(sx + 16, y + 42);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = t.trim;
+    ctx.fillRect(sx + 27, y, 2, 46);
+    ctx.fillRect(sx, y + 22, 56, 2);
+    R(sx - 5, y + 46, 66, 3, t.trim);
+  }
+
+  /* ===================== Desenho: unidades do corredor ===================== */
+  function drawUnit(ux, t){
+    // porta da sala
+    R(ux - 4, 88, 56, 62, t.trim);
+    R(ux, 92, 48, 58, t.door);
+    R(ux, 92, 48, 2, t.doorLight);
+    R(ux + 40, 92, 8, 58, 'rgba(0,0,0,0.14)');
+    R(ux + 7, 98, 34, 22, '#cfe6f2');
+    R(ux + 9, 100, 10, 18, 'rgba(255,255,255,0.6)');
+    R(ux + 23, 98, 2, 22, t.door);
+    R(ux + 7, 108, 34, 2, t.door);
+    R(ux + 16, 124, 16, 8, '#f2f5fa');
+    R(ux + 18, 126, 12, 4, t.accent);
+    R(ux + 38, 132, 3, 4, '#f5c518');
+    R(ux + 5, 138, 38, 1, 'rgba(0,0,0,0.12)');
+    R(ux + 5, 144, 38, 1, 'rgba(0,0,0,0.12)');
+
+    // armários
+    for(let i = 0; i < 3; i++){
+      const lx = ux + 62 + i * 26;
+      R(lx, 96, 26, 54, t.lockerDark);
+      R(lx + 2, 98, 22, 50, t.locker);
+      R(lx + 2, 98, 22, 2, 'rgba(255,255,255,0.26)');
+      for(let v = 0; v < 3; v++) R(lx + 6, 106 + v * 3, 14, 1, 'rgba(0,0,0,0.2)');
+      R(lx + 5, 116, 16, 6, 'rgba(255,255,255,0.82)');
+      R(lx + 16, 132, 3, 6, '#e8eef8');
+      R(lx + 17, 136, 1, 2, '#20293a');
+      R(lx, 148, 26, 2, 'rgba(0,0,0,0.22)');
+    }
+
+    // mural
+    R(ux + 146, 50, 96, 58, '#8a6236');
+    R(ux + 149, 53, 90, 52, '#c99b62');
+    const papers = [[4,5,'#f7f3ec'],[26,7,'#ffe9a8'],[48,4,'#dceaf2'],[68,8,'#f7d6d6'],[12,27,'#f7f3ec'],[38,25,'#dceaf2'],[64,29,'#ffe9a8']];
+    for(let k = 0; k < papers.length; k++){
+      const pa = papers[k];
+      const px = ux + 149 + pa[0], py = 53 + pa[1];
+      R(px, py, 17, 15, pa[2]);
+      R(px + 2, py + 3, 13, 1, 'rgba(0,0,0,0.28)');
+      R(px + 2, py + 6, 11, 1, 'rgba(0,0,0,0.28)');
+      R(px + 2, py + 9, 12, 1, 'rgba(0,0,0,0.28)');
+    }
+    R(ux + 146, 108, 96, 3, 'rgba(0,0,0,0.2)');
+  }
+
+  function drawUnits(cam){
+    const t = THEMES[level.def.theme];
+    const step = 264;
+    const start = Math.floor(cam / step) * step;
+    for(let wx = start - step; wx < cam + VW + step; wx += step){
+      const sx = wx - cam;
+      if(sx < -260 || sx > VW + 20) continue;
+      drawUnit(sx, t);
+    }
+  }
+
+  /* ===================== Desenho: piso ===================== */
+  function drawFloor(cam){
+    const t = THEMES[level.def.theme];
+    R(0, 144, VW, 12, t.trim);
+    R(0, 144, VW, 2, 'rgba(255,255,255,0.24)');
+    R(0, 156, VW, VH - 156, t.floor);
+    const lines = [162, 170, 182, 200];
+    for(const y of lines) R(0, y, VW, 1, t.floorLine);
+    const step = 32;
+    const start = Math.floor(cam / step) * step;
+    ctx.strokeStyle = t.floorLine;
+    ctx.lineWidth = 1;
+    for(let wx = start - step; wx < cam + VW + step; wx += step){
+      const sx = wx - cam;
+      const bx = sx + (sx - VW / 2) * 0.32;
+      ctx.beginPath();
+      ctx.moveTo(sx + 0.5, 156);
+      ctx.lineTo(bx + 0.5, VH);
+      ctx.stroke();
+    }
+  }
+
+  /* ===================== Bandeira de Pernambuco ===================== */
+  function starPath(cx, cy, r){
+    ctx.beginPath();
+    for(let i = 0; i < 10; i++){
+      const ang = -Math.PI / 2 + i * Math.PI / 5;
+      const rr = (i % 2 === 0) ? r : r * 0.44;
+      const px = cx + Math.cos(ang) * rr;
+      const py = cy + Math.sin(ang) * rr;
+      if(i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+  }
+
+  function drawFlag(x, y, w, h){
+    R(x, y, w, Math.round(h * 0.6), '#1d4f9e');
+    R(x, y + Math.round(h * 0.6), w, h - Math.round(h * 0.6), '#f5f7fb');
+    const cx = x + w * 0.46;
+    const cy = y + h * 0.63;
+    const stripes = ['#d92d2d', '#f5c518', '#1f9e4d'];
+    for(let i = 0; i < 3; i++){
+      ctx.strokeStyle = stripes[i];
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, Math.max(2, w * 0.30 - i * 1.7), Math.PI * 1.06, Math.PI * 1.94);
+      ctx.stroke();
+    }
+    ctx.fillStyle = '#f5c518';
+    starPath(cx, y + h * 0.24, Math.max(2, w * 0.11));
+    ctx.fill();
+    ctx.fillStyle = '#d92d2d';
+    R(cx - 1, y + h * 0.66, 2, h * 0.26);
+    R(cx - w * 0.14, y + h * 0.75, w * 0.28, 2);
+  }
+
+  /* ===================== Desenho: porta da direção ===================== */
+  function drawExit(cam){
+    const dx = Math.round(exitDoorX() - cam);
+    const allDone = resolvedCount >= totalSit;
+    const t = THEMES[level.def.theme];
+
+    R(dx - 6, 82, 58, 68, '#0f2447');
+    R(dx - 2, 86, 50, 64, allDone ? '#1d4f9e' : '#25406e');
+    R(dx - 2, 86, 50, 3, 'rgba(255,255,255,0.22)');
+    R(dx + 6, 94, 34, 22, '#cfe6f2');
+    R(dx + 8, 96, 12, 18, 'rgba(255,255,255,0.6)');
+    R(dx + 6, 118, 34, 2, 'rgba(255,255,255,0.35)');
+    R(dx + 36, 126, 4, 6, '#f5c518');
+
+    // placa DIREÇÃO
+    R(dx - 10, 64, 66, 14, '#0d1b34');
+    R(dx - 8, 66, 62, 10, '#f2f5fa');
+    ctx.fillStyle = '#0d1b34';
+    ctx.font = 'bold 8px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('DIREÇÃO', dx + 23, 71.5);
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+
+    // mastro com bandeira
+    R(dx + 54, 62, 2, 88, '#cfd8e3');
+    R(dx + 56, 62, 1, 88, 'rgba(0,0,0,0.18)');
+    ctx.fillStyle = '#f5c518';
+    ctx.beginPath(); ctx.arc(dx + 55, 60, 3, 0, 6.283); ctx.fill();
+    const wave = reduceMotion ? 0 : Math.sin(time * 0.08) * 1.5;
+    drawFlag(dx + 57, 64 + wave, 24, 16);
+
+    if(allDone){
+      const pulse = reduceMotion ? 0.35 : 0.25 + Math.sin(time * 0.1) * 0.14;
+      ctx.globalAlpha = pulse;
+      R(dx - 10, 78, 66, 76, '#f5c518');
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = '#241a00';
+      ctx.font = 'bold 8px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      R(dx + 2, 152, 42, 11, '#f5c518');
+      ctx.fillText('ENTRE', dx + 23, 160.5);
+      ctx.textAlign = 'left';
+    } else {
+      ctx.fillStyle = t.accent;
+      ctx.globalAlpha = 0.85;
+      R(dx + 2, 152, 42, 11, 'rgba(13,27,52,0.75)');
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = '#dfe8f7';
+      ctx.font = 'bold 7px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('RESOLVA TUDO', dx + 23, 159.5);
+      ctx.textAlign = 'left';
+    }
+  }
+
+  /* ===================== Desenho: pessoas ===================== */
+  function drawKid(cx, feetY, look, mood, dir){
+    const x = Math.round(cx - 6);
+    const top = feetY - 18;
+    ctx.fillStyle = 'rgba(0,0,0,0.14)';
+    ctx.beginPath();
+    ctx.ellipse(cx, feetY - 1, 7, 2.4, 0, 0, 6.283);
+    ctx.fill();
+
+    R(x + 3, top + 13, 2, 3, '#2b3550');
+    R(x + 7, top + 13, 2, 3, '#2b3550');
+    R(x + 2, top + 16, 4, 2, '#101828');
+    R(x + 7, top + 16, 4, 2, '#101828');
+    R(x + 1, top + 8, 2, 4, look.skin);
+    R(x + 9, top + 8, 2, 4, look.skin);
+    R(x + 2, top + 7, 8, 6, look.shirt);
+    R(x + 2, top + 7, 8, 1, 'rgba(255,255,255,0.22)');
+    R(x + 3, top + 2, 6, 5, look.skin);
+    R(x + 2, top + 1, 8, 2, look.hair);
+    R(x + 2, top + 3, 1, 2, look.hair);
+    R(x + 9, top + 3, 1, 2, look.hair);
+
+    R(x + 4, top + 4, 1, 1, '#101828');
+    R(x + 7, top + 4, 1, 1, '#101828');
+
+    if(mood === 'sad'){
+      R(x + 4, top + 3, 2, 1, 'rgba(0,0,0,0.35)');
+      R(x + 7, top + 3, 2, 1, 'rgba(0,0,0,0.35)');
+      R(x + 6, top + 6, 2, 1, '#8c5a44');
+      R(x + 8, top + 5, 1, 2, '#7fd3f0');
+    } else if(mood === 'angry'){
+      R(x + 4, top + 3, 2, 1, '#101828');
+      R(x + 7, top + 3, 2, 1, '#101828');
+      R(x + 5, top + 6, 2, 1, '#8c5a44');
+    } else if(mood === 'confused'){
+      R(x + 5, top + 6, 2, 1, '#8c5a44');
+    } else {
+      R(x + 4, top + 6, 3, 1, '#8c5a44');
+    }
+
+    if(dir < 0){
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function bubble(cx, baseY, ch, bg, fg){
+    const w = 13, h = 13;
+    const x = Math.round(cx - w / 2);
+    const y = Math.round(baseY - h);
+    R(x, y, w, h, bg);
+    R(x + 1, y + 1, w - 2, 1, 'rgba(255,255,255,0.28)');
+    R(x + 5, y + h, 3, 3, bg);
+    ctx.fillStyle = fg;
+    ctx.font = 'bold 9px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(ch, x + w / 2, y + h / 2 + 0.5);
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+  }
+
+  function drawSituation(s, cam, isNear){
+    const cx = Math.round(s.x + 8 - cam);
+    if(cx < -60 || cx > VW + 60) return;
+    const t = THEMES[level.def.theme];
+    const done = s.done;
+    const bob = reduceMotion ? 0 : Math.sin(time * 0.08 + s.phase) * 1.2;
+
+    if(isNear && !done && !active){
+      ctx.fillStyle = 'rgba(245,197,24,0.22)';
+      ctx.beginPath();
+      ctx.ellipse(cx, FLOOR_Y + 1, 30, 6, 0, 0, 6.283);
+      ctx.fill();
+    }
+
+    if(s.type === 'briga'){
+      drawKid(cx - 20, FLOOR_Y, LOOKS[0], done ? 'happy' : 'angry', 1);
+      drawKid(cx - 4, FLOOR_Y, LOOKS[1], done ? 'happy' : 'angry', -1);
+      if(!done){
+        R(cx - 14, FLOOR_Y - 26, 3, 3, '#d92d2d');
+        R(cx - 8, FLOOR_Y - 30, 3, 3, '#d92d2d');
+      }
+    } else if(s.type === 'bully'){
+      drawKid(cx - 22, FLOOR_Y, LOOKS[3], done ? 'happy' : 'angry', 1);
+      drawKid(cx - 4, FLOOR_Y, LOOKS[5], done ? 'happy' : 'sad', 1);
+    } else if(s.type === 'triste'){
+      drawKid(cx - 12, FLOOR_Y, LOOKS[2], done ? 'happy' : 'sad', 1);
+    } else {
+      drawKid(cx - 12, FLOOR_Y, LOOKS[4], done ? 'happy' : 'confused', 1);
+    }
+
+    if(done){
+      bubble(cx - 10, FLOOR_Y - 24, '✓', '#1f9e4d', '#ffffff');
+    } else {
+      bubble(cx - 10, FLOOR_Y - 26 + bob, s.type === 'perdido' || s.type === 'triste' ? '?' : '!', '#f5c518', '#241a00');
+      if(isNear && !active){
+        ctx.fillStyle = '#f5c518';
+        ctx.font = 'bold 8px system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('AGIR', cx - 10, FLOOR_Y + 12);
+        ctx.textAlign = 'left';
+      }
+    }
+
+    if(!done && s.alert > 0){
+      const pw = 26, px2 = cx - 21, py2 = FLOOR_Y - 34;
+      R(px2, py2, pw, 4, 'rgba(13,27,52,0.85)');
+      const pp = clamp(s.alert / PATIENCE_MAX, 0, 1);
+      R(px2 + 1, py2 + 1, Math.round((pw - 2) * pp), 2, pp > 0.66 ? '#e04a4a' : '#f5c518');
+    }
+
+    if(active === s){
+      const w = 40;
+      const bx = cx - 24, by = FLOOR_Y - 40;
+      R(bx, by, w, 6, 'rgba(13,27,52,0.85)');
+      R(bx + 1, by + 1, Math.round((w - 2) * (actionT / actionMax)), 4, '#f5c518');
+    }
+    void t;
+  }
+
+  function drawIdlers(cam){
+    for(const g of idlers){
+      const sx = g.x - cam;
+      if(sx < -40 || sx > VW + 40) continue;
+      drawKid(Math.round(sx + 6), FLOOR_Y, g.look, 'happy', g.dir);
+    }
+  }
+
+  function drawVillain(cam){
+    for(const v of villains){
+      const cx = Math.round(v.x + 7 - cam);
+      if(cx < -60 || cx > VW + 60) continue;
+      const bob = reduceMotion ? 0 : Math.sin(time * 0.12 + v.phase) * 1;
+      const x = cx - 6;
+      const top = Math.round(FLOOR_Y - 18 + bob);
+
+      // aura maligna pulsante
+      const aura = reduceMotion ? 0.32 : 0.26 + Math.sin(time * 0.09 + v.phase) * 0.12;
+      const grd = ctx.createRadialGradient(cx, FLOOR_Y - 12, 2, cx, FLOOR_Y - 12, 28);
+      grd.addColorStop(0, v.k.glow + '0.5)');
+      grd.addColorStop(1, v.k.glow + '0)');
+      ctx.globalAlpha = aura;
+      ctx.fillStyle = grd;
+      ctx.beginPath(); ctx.arc(cx, FLOOR_Y - 12, 28, 0, 6.283); ctx.fill();
+      ctx.globalAlpha = 1;
+
+      ctx.fillStyle = 'rgba(0,0,0,0.28)';
+      ctx.beginPath();
+      ctx.ellipse(cx, FLOOR_Y - 1, 12, 3.2, 0, 0, 6.283);
+      ctx.fill();
+
+      // capa escura esfarrapada
+      R(x + 1, top + 8, 16, 12, v.k.cape);
+      R(x, top + 18, 5, 4, v.k.cape);
+      R(x + 6, top + 19, 4, 3, v.k.cape);
+      R(x + 12, top + 18, 5, 4, v.k.cape);
+      R(x + 1, top + 8, 16, 1, v.k.capeTop);
+      // botas
+      R(x + 3, top + 21, 5, 3, '#12101a');
+      R(x + 10, top + 21, 5, 3, '#12101a');
+      R(x + 2, top + 23, 7, 1, '#0a0910');
+      R(x + 9, top + 23, 7, 1, '#0a0910');
+      // pernas
+      R(x + 4, top + 17, 3, 5, '#1b1526');
+      R(x + 11, top + 17, 3, 5, '#1b1526');
+      R(x + 4, top + 17, 1, 5, '#120e1a');
+      R(x + 11, top + 17, 1, 5, '#120e1a');
+      // jaqueta
+      R(x + 3, top + 9, 12, 9, v.k.coat);
+      R(x + 2, top + 9, 14, 2, v.k.coatDark);
+      R(x + 3, top + 9, 12, 1, v.k.coatTop);
+      R(x + 8, top + 9, 2, 9, v.k.coatDark);
+      // emblema
+      R(x + 6, top + 11, 4, 4, '#0d0b12');
+      R(x + 7, top + 12, 2, 2, v.k.eye);
+      // braços e punhos
+      R(x + 1, top + 11, 3, 6, v.k.coat);
+      R(x + 14, top + 11, 3, 6, v.k.coat);
+      R(x, top + 16, 4, 3, v.k.skin);
+      R(x + 14, top + 16, 4, 3, v.k.skin);
+      R(x, top + 18, 4, 1, '#8f5f38');
+      R(x + 14, top + 18, 4, 1, '#8f5f38');
+      // cabeça
+      R(x + 4, top + 3, 10, 6, v.k.skin);
+      R(x + 5, top + 8, 8, 1, '#9d6340');
+      R(x + 3, top + 4, 1, 3, v.k.hair);
+      R(x + 14, top + 4, 1, 3, v.k.hair);
+      R(x + 13, top + 4, 1, 3, '#8f4a3a');
+      // sobrancelhas inclinadas
+      R(x + 5, top + 4, 3, 1, '#0d0b12');
+      R(x + 10, top + 4, 3, 1, '#0d0b12');
+      R(x + 7, top + 5, 1, 1, '#0d0b12');
+      R(x + 10, top + 5, 1, 1, '#0d0b12');
+      // olhos brilhando
+      R(x + 6, top + 5, 2, 2, v.k.eye);
+      R(x + 10, top + 5, 2, 2, v.k.eye);
+      R(x + 6, top + 5, 1, 1, '#fff1f1');
+      R(x + 10, top + 5, 1, 1, '#fff1f1');
+      // sorriso torto com dente
+      R(x + 6, top + 7, 5, 1, '#2b0f16');
+      R(x + 9, top + 7, 1, 1, '#f2f5fa');
+      R(x + 11, top + 7, 1, 1, '#2b0f16');
+      if(v.k.hat === 'hood'){
+        // capuz cobrindo o rosto, só os olhos aparecem
+        R(x + 3, top + 0, 12, 4, v.k.cap);
+        R(x + 3, top + 0, 12, 1, v.k.capTop);
+        R(x + 2, top + 3, 2, 7, v.k.cap);
+        R(x + 14, top + 3, 2, 7, v.k.cap);
+        R(x + 4, top + 3, 2, 4, v.k.capDark);
+        R(x + 12, top + 3, 2, 4, v.k.capDark);
+        R(x + 4, top + 2, 10, 1, v.k.capDark);
+      } else if(v.k.hat === 'leather'){
+        // chapéu de couro do cangaceiro, com aba larga e tiras laterais
+        R(x + 2, top - 1, 12, 3, v.k.cap);
+        R(x + 2, top - 1, 12, 1, v.k.capTop);
+        R(x + 0, top + 2, 18, 2, v.k.capDark);
+        R(x + 5, top + 0, 6, 1, v.k.capTop);
+        R(x + 1, top + 4, 2, 2, v.k.capDark);
+        R(x + 15, top + 4, 2, 2, v.k.capDark);
+        R(x + 6, top + 3, 6, 1, '#2b1a0c');
+      } else if(v.k.hat === 'band'){
+        // faixa amarrada na cabeça do gigante, com ponta sobrando
+        R(x + 3, top + 0, 12, 3, v.k.cap);
+        R(x + 3, top + 0, 12, 1, v.k.capTop);
+        R(x + 3, top + 2, 12, 1, v.k.capDark);
+        R(x + 13, top + 2, 4, 2, v.k.capTop);
+        R(x + 4, top + 3, 10, 1, '#0d0b12');
+        R(x + 1, top + 1, 2, 3, v.k.capDark);
+      } else if(v.k.hat === 'ghost'){
+        // capuz pálido do fantasma, flutuando sobre o rosto
+        R(x + 2, top - 2, 14, 5, v.k.cap);
+        R(x + 2, top - 2, 14, 1, v.k.capTop);
+        R(x + 1, top + 2, 3, 8, v.k.capDark);
+        R(x + 14, top + 2, 3, 8, v.k.capDark);
+        R(x + 3, top + 1, 12, 2, v.k.capTop);
+      } else {
+        // boné vermelho com aba
+        R(x + 3, top + 0, 12, 3, v.k.cap);
+        R(x + 3, top + 0, 12, 1, v.k.capTop);
+        R(x + 3, top + 2, 12, 1, v.k.capDark);
+        R(x + 11, top + 3, 6, 2, v.k.capDark);
+        R(x + 8, top + 0, 2, 1, v.k.capDark);
+        R(x + 7, top + 1, 4, 1, '#0d0b12');
+      }
+
+      if(v.done){
+        bubble(cx - 1, FLOOR_Y - 24, '✓', '#1f9e4d', '#ffffff');
+        continue;
+      }
+
+      const puff = reduceMotion ? 0 : Math.sin(time * 0.1 + v.phase) * 1;
+      bubble(cx - 1, FLOOR_Y - 26 + puff, '✖', v.k.cap, '#ffffff');
+
+      if(nearVil === v && !active){
+        ctx.fillStyle = '#f5c518';
+        ctx.font = 'bold 8px system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('AGIR', cx, FLOOR_Y + 12);
+        ctx.textAlign = 'left';
+      }
+
+      if(active === v){
+        const w = 40;
+        const bx = cx - 20, by = FLOOR_Y - 42;
+        R(bx, by, w, 6, 'rgba(13,27,52,0.85)');
+        R(bx + 1, by + 1, Math.round((w - 2) * clamp(actionT / actionMax, 0, 1)), 4, '#f5c518');
+      }
+    }
+  }
+
+  function drawPlayer(cam){
+    const P = player;
+    if(!P) return;
+    const x = Math.round(P.x - cam);
+    const y = Math.round(P.y);
+
+    ctx.fillStyle = 'rgba(0,0,0,0.18)';
+    ctx.beginPath();
+    ctx.ellipse(x + 7, FLOOR_Y - 1, 8, 2.6, 0, 0, 6.283);
+    ctx.fill();
+
+    ctx.save();
+    if(P.face < 0){ ctx.translate(x + P.w, y); ctx.scale(-1, 1); }
+    else { ctx.translate(x, y); }
+
+    const moving = Math.abs(P.vx) > 0.2;
+    const step = moving ? Math.floor(P.walkT / 6) % 2 : 0;
+
+    // botas
+    if(step === 0){
+      R(2, 18, 4, 2, '#0a1020');
+      R(8, 18, 4, 2, '#0a1020');
+    } else {
+      R(3, 18, 4, 2, '#0a1020');
+      R(7, 18, 5, 2, '#0a1020');
+    }
+    // calça azul-marinho com listra vermelha
+    R(3, 15, 8, 3, '#1a2b45');
+    R(3, 15, 1, 3, '#d92d2d');
+    R(10, 15, 1, 3, '#d92d2d');
+    // cinto branco com fivela
+    R(3, 14, 8, 1, '#f2f5fa');
+    R(6, 14, 2, 1, '#f5c518');
+    // dólmã
+    R(3, 9, 8, 5, '#16305c');
+    R(3, 9, 8, 1, '#22406f');
+    R(3, 9, 1, 5, '#0f2447');
+    R(10, 9, 1, 5, '#0f2447');
+    // botões dourados
+    R(7, 10, 1, 1, '#f5c518');
+    R(7, 12, 1, 1, '#f5c518');
+    // brasão com estrela
+    R(4, 10, 2, 2, '#1d4f9e');
+    ctx.fillStyle = '#f5c518';
+    starPath(5, 11, 0.9);
+    ctx.fill();
+    // gola branca
+    R(4, 8, 6, 1, '#f2f5fa');
+    // rosto
+    R(3, 3, 8, 5, '#c98a5b');
+    R(3, 3, 8, 1, '#d99a6b');
+    R(5, 5, 1, 1, '#10224a');
+    R(8, 5, 1, 1, '#10224a');
+    R(6, 7, 2, 1, '#8e5c36');
+    // quepe com estrela dourada
+    R(2, 0, 10, 2, '#132a52');
+    R(2, 0, 10, 1, '#22406f');
+    R(6, 1, 2, 1, '#f5c518');
+    R(1, 2, 12, 1, '#0b1830');
+
+    ctx.restore();
+
+    if(active){
+      ctx.fillStyle = '#f5c518';
+      ctx.font = 'bold 8px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('...', x + 7, y - 4);
+      ctx.textAlign = 'left';
+    } else if(nearSit){
+      R(x - 4, y - 13, 24, 10, '#f5c518');
+      R(x - 3, y - 12, 22, 8, '#ffe25c');
+      ctx.fillStyle = '#241a00';
+      ctx.font = 'bold 7px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('AGIR', x + 8, y - 5);
+      ctx.textAlign = 'left';
+    }
+  }
+
+  /* ===================== Render ===================== */
+  function render(){
+    if(!level || !player) return;
+    const cam = Math.round(clamp(camX, 0, Math.max(0, level.widthPx - VW)));
+    drawWall(cam);
+    drawUnits(cam);
+    drawFloor(cam);
+    drawExit(cam);
+    drawIdlers(cam);
+    for(const s of situations) drawSituation(s, cam, nearSit === s);
+    drawVillain(cam);
+    drawPlayer(cam);
+  }
+
+  /* ===================== Telas ===================== */
+  function setOverlay(html){
+    overlayEl.innerHTML = html;
+    overlayEl.classList.add('show');
+    if(promptEl){ promptEl.classList.remove('show'); promptEl.innerHTML = ''; promptEl.dataset.msg = ''; }
+    if(actCtrl) actCtrl.classList.remove('ready');
+    const first = overlayEl.querySelector('[data-action], [data-choice]');
+    if(first) setTimeout(function(){ try{ first.focus({preventScroll:true}); }catch(e){ first.focus(); } }, 30);
+  }
+  function hideOverlay(){
+    overlayEl.classList.remove('show');
+    overlayEl.innerHTML = '';
+  }
+
+  function showMenu(){
+    state = 'menu';
+    setOverlay(
+      '<div class="card">' +
+        '<p class="eyebrow">Missão na escola</p>' +
+        '<h1 id="overlay-title">Farda de Pernambuco</h1>' +
+        '<p class="eyebrow">5 fases · 5 vilões</p>' +
+        '<p class="lead">Um oficial de farda pernambucana caminha pelo corredor da escola, em <strong>5 fases</strong>. O objetivo <strong>não é pular plataformas</strong>: é <strong>separar brigas</strong> e <strong>ajudar alunos com problemas</strong>. Chegue perto de cada situação e aperte <strong>Agir</strong>: abre uma lista de formas de agir, e a escolha certa rende mais pontos e XP. Mas cuidado com o <strong>vilão de cada fase</strong>: ele muda a cada setor — <strong>Boné Vermelho</strong>, <strong>Encapuzado Verde</strong>, <strong>Cangaceiro Sombrio</strong>, <strong>Gigante da Quadra</strong> e <strong>Fantasma da Biblioteca</strong> —, cada um com capa, chapéu, cor dos olhos, velocidade e pressa próprios. São bem maiores que os alunos, rondam o corredor, perseguem as situações e fazem a paciência delas encher mais rápido. Chegue perto do vilão e use Agir para levá-lo à direção.</p>' +
+        '<div class="hint-row">' +
+          '<span><kbd>←</kbd><kbd>→</kbd> ou <kbd>A</kbd><kbd>D</kbd> andar</span>' +
+          '<span><kbd>Espaço</kbd> ou <kbd>E</kbd> agir</span>' +
+          '<span><kbd>P</kbd> pausar</span>' +
+          '<span><kbd>R</kbd> reiniciar</span>' +
+        '</div>' +
+        '<div class="actions">' +
+          '<button class="btn primary" type="button" data-action="start">Começar</button>' +
+          '<button class="btn" type="button" data-action="help">Como jogar</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function showHelp(){
+    prevState = state;
+    state = 'help';
+    const back = (prevState === 'playing' || prevState === 'paused') ? 'Voltar ao jogo' : 'Voltar';
+    setOverlay(
+      '<div class="card">' +
+        '<p class="eyebrow">Instruções</p>' +
+        '<h1 id="overlay-title">Como jogar</h1>' +
+        '<ul class="rules">' +
+          '<li><strong>Andar:</strong> setas <kbd>←</kbd> <kbd>→</kbd> ou <kbd>A</kbd> <kbd>D</kbd>. No celular, use os botões abaixo da tela.</li>' +
+          '<li><strong>Agir:</strong> ande até alguém com balão <strong>!</strong> ou <strong>?</strong>. Quando aparecer o aviso dourado <strong>AGIR</strong> na tela e sobre a pessoa, aperte <kbd>Espaço</kbd>, <kbd>E</kbd> ou toque no botão <strong>Agir</strong>, que fica dourado e pulsando.</li>' +
+          '<li><strong>Escolher a forma de agir:</strong> abre uma lista de atitudes. Toque na opção ou aperte <kbd>1</kbd>, <kbd>2</kbd> ou <kbd>3</kbd>; <kbd>Esc</kbd> ou o botão <strong>Voltar ao corredor</strong> cancela sem gastar nada.</li>' +
+          '<li><strong>Formas de agir:</strong> conversar e ouvir é sempre o melhor caminho — rende 350 pontos (brigas e implicações) ou 250 (alunos tristes ou perdidos), mais XP. Uma escolha em parte rende 90 pontos e deixa a paciência quase cheia. Gritar, ignorar ou partir para a briga não rende pontos: a situação piora e custa 1 vida.</li>' +
+          '<li><strong>Clima da escola:</strong> sobe a cada situação resolvida e chega a 100% quando todas estiverem resolvidas.</li>' +
+          '<li><strong>Vidas:</strong> você tem <strong>5 vidas</strong>. Se demorar perto de uma situação, a barra de paciência enche, ela piora e você perde 1 vida. Concluir um setor devolve 1 vida.</li>' +
+          '<li><strong>XP:</strong> cada ajuda rende XP (brigas 350, alunos tristes ou perdidos 250). Ao completar a barra você sobe de nível e ganha 1 vida ou 250 pontos de bônus.</li>' +
+          '<li><strong>Vilões que mudam a cada fase:</strong> o setor 1 tem o <strong>Boné Vermelho</strong> (capa escura, olhos vermelhos); o setor 2, o <strong>Encapuzado Verde</strong>, mais rápido; o setor 3, o <strong>Cangaceiro Sombrio</strong>, de chapéu de couro; o setor 4, o <strong>Gigante da Quadra</strong>, de faixa azul; e o setor 5, o <strong>Fantasma da Biblioteca</strong>, que enche a paciência mais depressa que todos. Eles percorrem o corredor atrás das situações sem resolver. Aproxime-se de um e aperte <strong>Agir</strong>: escolha <strong>falar firme e levar ele para a direção</strong> para ganhar <strong>400</strong> pontos e XP; partir para a briga custa 1 vida. O nome e quantos estão à solta aparecem no topo da tela.</li>' +
+          '<li><strong>Setores:</strong> são <strong>5 fases</strong> — Boa Viagem, Recife Antigo, Sertão do Frevo, Quadra Coberta e Biblioteca Central.</li>' +
+          '<li><strong>Objetivo:</strong> resolver todas as situações do setor e ir até a <strong>porta da direção</strong> para passar ao próximo setor.</li>' +
+        '</ul>' +
+        '<div class="actions">' +
+          '<button class="btn primary" type="button" data-action="back">' + back + '</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function showPaused(){
+    state = 'paused';
+    setOverlay(
+      '<div class="card">' +
+        '<p class="eyebrow">Jogo pausado</p>' +
+        '<h1 id="overlay-title">Pausado</h1>' +
+        '<p class="lead">Pontos: <strong>' + score + '</strong> · Vidas: <strong>' + lives + '/' + MAX_LIVES + '</strong> · Nível <strong>' + nivel + '</strong> (' + xp + '/' + xpNext + ' XP) · Setor: <strong>' + (levelIndex + 1) + '</strong></p>' +
+        '<div class="actions">' +
+          '<button class="btn primary" type="button" data-action="resume">Continuar</button>' +
+          '<button class="btn" type="button" data-action="restart-level">Reiniciar setor</button>' +
+          '<button class="btn" type="button" data-action="help">Como jogar</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function clearLevel(){
+    if(state !== 'playing') return;
+    sfx('win');
+    score += 500;
+    lives = Math.min(MAX_LIVES, lives + 1);
+    updateHUD();
+    const isLast = levelIndex >= LEVELS.length - 1;
+    if(isLast){ showVictory(); return; }
+    state = 'cleared';
+    setOverlay(
+      '<div class="card">' +
+        '<p class="eyebrow">Setor ' + (levelIndex + 1) + ' concluído</p>' +
+        '<h1 id="overlay-title">Corredor em paz!</h1>' +
+        '<p class="lead">Todas as <strong>' + totalSit + '</strong> situações foram resolvidas. Bônus de <strong>500</strong> pontos e <strong>1 vida</strong> recuperada. Total: <strong>' + score + '</strong> pontos.</p>' +
+        '<div class="actions">' +
+          '<button class="btn primary" type="button" data-action="next">Próximo setor</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function showVictory(){
+    state = 'victory';
+    setOverlay(
+      '<div class="card">' +
+        '<p class="eyebrow">Todos os setores concluídos</p>' +
+        '<h1 id="overlay-title">A escola ficou em paz</h1>' +
+        '<p class="lead">Você passou pelos <strong>' + LEVELS.length + '</strong> setores, resolveu todas as situações e terminou com <strong>' + score + '</strong> pontos.</p>' +
+        '<div class="actions">' +
+          '<button class="btn primary" type="button" data-action="restart">Jogar de novo</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  /* ===================== Fluxo ===================== */
+  function startGame(){
+    ensureAudio();
+    score = 0;
+    lives = MAX_LIVES;
+    xp = 0; nivel = 1; xpNext = 1000;
+    levelIndex = 0;
+    buildLevel(0);
+    state = 'playing';
+    hideOverlay();
+    showToast('Chegue perto de cada situação e aperte Agir.', 180);
+  }
+  function restartLevel(){
+    ensureAudio();
+    lives = MAX_LIVES;
+    buildLevel(levelIndex);
+    state = 'playing';
+    hideOverlay();
+  }
+  function nextLevel(){
+    levelIndex++;
+    if(levelIndex >= LEVELS.length){ showVictory(); return; }
+    buildLevel(levelIndex);
+    state = 'playing';
+    hideOverlay();
+  }
+  function resumeGame(){
+    if(state === 'paused' || state === 'help'){
+      state = 'playing';
+      hideOverlay();
+    }
+  }
+  function togglePause(){
+    if(state === 'playing'){ showPaused(); }
+    else if(state === 'paused'){ resumeGame(); }
+  }
+  function handleAction(action){
+    if(action === 'start') startGame();
+    else if(action === 'help') showHelp();
+    else if(action === 'back'){
+      if(prevState === 'playing' || prevState === 'paused') resumeGame();
+      else showMenu();
+    }
+    else if(action === 'resume') resumeGame();
+    else if(action === 'cancel-choice') cancelChoice();
+    else if(action === 'restart') startGame();
+    else if(action === 'restart-level') restartLevel();
+    else if(action === 'next') nextLevel();
+    else if(action === 'menu') showMenu();
+  }
+
+  overlayEl.addEventListener('click', function(e){
+    const pick = e.target.closest('[data-choice]');
+    if(pick){
+      ensureAudio();
+      resolveChoice(parseInt(pick.dataset.choice, 10));
+      return;
+    }
+    const btn = e.target.closest('[data-action]');
+    if(!btn) return;
+    ensureAudio();
+    handleAction(btn.dataset.action);
+  });
+
+  /* ===================== Botões do HUD ===================== */
+  pauseBtn.addEventListener('click', function(){
+    ensureAudio();
+    if(state === 'playing') showPaused();
+    else if(state === 'paused') resumeGame();
+  });
+  restartBtn.addEventListener('click', function(){
+    ensureAudio();
+    restartLevel();
+  });
+  helpBtn.addEventListener('click', function(){
+    ensureAudio();
+    if(state === 'help') handleAction('back');
+    else showHelp();
+  });
+  soundBtn.addEventListener('click', function(){
+    muted = !muted;
+    soundBtn.setAttribute('aria-pressed', muted ? 'false' : 'true');
+    soundBtn.setAttribute('aria-label', muted ? 'Ligar som' : 'Desligar som');
+    soundBtn.firstChild.nodeValue = muted ? '✕' : '♪';
+    if(!muted) sfx('blip');
+  });
+
+  /* ===================== Teclado ===================== */
+  window.addEventListener('keydown', function(e){
+    const k = e.key;
+    if(state === 'choice'){
+      if(k === '1' || k === '2' || k === '3'){ e.preventDefault(); resolveChoice(parseInt(k, 10) - 1); }
+      else if(k === 'Escape'){ e.preventDefault(); cancelChoice(); }
+      return;
+    }
+    if(k === ' ' || k === 'ArrowLeft' || k === 'ArrowRight' || k === 'ArrowUp' || k === 'ArrowDown') e.preventDefault();
+    if(k === 'ArrowLeft' || k === 'a' || k === 'A') keys.left = true;
+    if(k === 'ArrowRight' || k === 'd' || k === 'D') keys.right = true;
+    if(state === 'playing' && (k === ' ' || k === 'e' || k === 'E') && !e.repeat){ tryAct(); }
+    if(k === 'p' || k === 'P' || k === 'Escape'){ togglePause(); }
+    if(k === 'r' || k === 'R'){ if(state === 'playing' || state === 'paused') restartLevel(); }
+    if(k === 'Enter' && overlayEl.classList.contains('show')){
+      const first = overlayEl.querySelector('[data-action]');
+      if(first) first.click();
+    }
+  });
+  window.addEventListener('keyup', function(e){
+    const k = e.key;
+    if(k === 'ArrowLeft' || k === 'a' || k === 'A') keys.left = false;
+    if(k === 'ArrowRight' || k === 'd' || k === 'D') keys.right = false;
+  });
+  window.addEventListener('blur', function(){
+    keys.left = keys.right = false;
+    if(state === 'playing') showPaused();
+  });
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden && state === 'playing') showPaused();
+  });
+
+  /* ===================== Toque ===================== */
+  document.querySelectorAll('.ctrl').forEach(function(btn){
+    const k = btn.dataset.key;
+    const press = function(e){
+      e.preventDefault();
+      ensureAudio();
+      btn.classList.add('active');
+      if(k === 'act') tryAct();
+      else keys[k] = true;
+    };
+    const release = function(e){
+      if(e) e.preventDefault();
+      btn.classList.remove('active');
+      if(k !== 'act') keys[k] = false;
+    };
+    btn.addEventListener('pointerdown', press);
+    btn.addEventListener('pointerup', release);
+    btn.addEventListener('pointercancel', release);
+    btn.addEventListener('pointerleave', release);
+    btn.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  });
+
+  /* ===================== Loop ===================== */
+  let acc = 0, lastT = performance.now();
+  const STEP = 1000 / 60;
+
+  function frame(now){
+    const delta = Math.min(64, now - lastT);
+    lastT = now;
+    acc += delta;
+    let steps = 0;
+    while(acc >= STEP && steps < 5){
+      time++;
+      if(state === 'playing') update();
+      acc -= STEP;
+      steps++;
+    }
+    if(acc > STEP * 5) acc = 0;
+    render();
+    requestAnimationFrame(frame);
+  }
+
+  /* ===================== Início ===================== */
+  score = 0;
+  lives = MAX_LIVES;
+  buildLevel(0);
+  fitCanvas();
+  if(window.ResizeObserver){
+    try{ new ResizeObserver(fitCanvas).observe(stage); }catch(e){}
+  }
+  render();
+  showMenu();
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
